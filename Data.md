@@ -1,3 +1,7 @@
+layout: page
+title: "Data"
+permalink: https://akaymaram.github.io/Data
+
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Data</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
