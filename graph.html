@@ -1,0 +1,548 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+                <div id="select-menu" class="card-header">
+                    <div class="row no-gutters">
+                        <div class="col-10 pb-2">
+                            <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="selectNode([value]);"
+                            id="select-node"
+                            placeholder="Select node..."
+                            >
+                                <option selected>Select a Node by ID</option>
+                                
+                                    <option value="أَبُو جَعْفَرٍ مُحَمَّدُ بْنُ يَعْقُوبَ">أَبُو جَعْفَرٍ مُحَمَّدُ بْنُ يَعْقُوبَ</option>
+                                
+                                    <option value="أَصْحَابِنَا مُحَمَّدُ بْنُ يَحْيَى الْعَطَّارُ">أَصْحَابِنَا مُحَمَّدُ بْنُ يَحْيَى الْعَطَّارُ</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ مُحَمَّدٍ">أَحْمَدَ بْنِ مُحَمَّدٍ</option>
+                                
+                                    <option value="الْحَسَنِ بْنِ مَحْبُوبٍ">الْحَسَنِ بْنِ مَحْبُوبٍ</option>
+                                
+                                    <option value="الْعَلَاءِ بْنِ رَزِينٍ">الْعَلَاءِ بْنِ رَزِينٍ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ مُسْلِمٍ">مُحَمَّدِ بْنِ مُسْلِمٍ</option>
+                                
+                                    <option value="عَلِيُّ بْنُ مُحَمَّدٍ">عَلِيُّ بْنُ مُحَمَّدٍ</option>
+                                
+                                    <option value="سَهْلِ بْنِ زِيَادٍ">سَهْلِ بْنِ زِيَادٍ</option>
+                                
+                                    <option value="عَمْرِو بْنِ عُثْمَانَ">عَمْرِو بْنِ عُثْمَانَ</option>
+                                
+                                    <option value="مُفَضَّلِ بْنِ صَالِحٍ">مُفَضَّلِ بْنِ صَالِحٍ</option>
+                                
+                                    <option value="سَعْدِ بْنِ طَرِيفٍ">سَعْدِ بْنِ طَرِيفٍ</option>
+                                
+                                    <option value="الْأَصْبَغِ بْنِ نُبَاتَةَ">الْأَصْبَغِ بْنِ نُبَاتَةَ</option>
+                                
+                                    <option value="أَحْمَدُ بْنُ إِدْرِيسَ">أَحْمَدُ بْنُ إِدْرِيسَ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ عَبْدِ الْجَبَّارِ">مُحَمَّدِ بْنِ عَبْدِ الْجَبَّارِ</option>
+                                
+                                    <option value="بَعْضِ أَصْحَابِنَا">بَعْضِ أَصْحَابِنَا</option>
+                                
+                                    <option value="مُحَمَّدُ بْنُ يَحْيى">مُحَمَّدُ بْنُ يَحْيى</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ مُحَمَّدِ بْنِ عِيسى">أَحْمَدَ بْنِ مُحَمَّدِ بْنِ عِيسى</option>
+                                
+                                    <option value="ابْنِ فَضَّالٍ">ابْنِ فَضَّالٍ</option>
+                                
+                                    <option value="الْحَسَنِ بْنِ الْجَهْمِ">الْحَسَنِ بْنِ الْجَهْمِ</option>
+                                
+                                    <option value="أحْمَدَ بْنِ مُحَمَّدٍ">أحْمَدَ بْنِ مُحَمَّدٍ</option>
+                                
+                                    <option value="فَضَّالٍ">فَضَّالٍ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ حَسَّانَ">مُحَمَّدِ بْنِ حَسَّانَ</option>
+                                
+                                    <option value="أَبِي مُحَمَّدٍ الرَّازِيِّ">أَبِي مُحَمَّدٍ الرَّازِيِّ</option>
+                                
+                                    <option value="سَيْفِ بْنِ عَمِيرَةَ">سَيْفِ بْنِ عَمِيرَةَ</option>
+                                
+                                    <option value="إِسْحَاقَ بْنِ عَمَّارٍ">إِسْحَاقَ بْنِ عَمَّارٍ</option>
+                                
+                                    <option value="أَصْحَابِنَا">أَصْحَابِنَا</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ مُحَمَّدِ بْنِ خَالِدٍ">أَحْمَدَ بْنِ مُحَمَّدِ بْنِ خَالِدٍ</option>
+                                
+                                    <option value="الْحَسَنِ بْنِ عَلِيِّ بْنِ يَقْطِينٍ">الْحَسَنِ بْنِ عَلِيِّ بْنِ يَقْطِينٍ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ سِنَانٍ">مُحَمَّدِ بْنِ سِنَانٍ</option>
+                                
+                                    <option value="أَبِي الْجَارُودِ">أَبِي الْجَارُودِ</option>
+                                
+                                    <option value="عَلِيُّ بْنُ مُحَمَّدِ بْنِ عَبْدِ اللهِ">عَلِيُّ بْنُ مُحَمَّدِ بْنِ عَبْدِ اللهِ</option>
+                                
+                                    <option value="إِبْرَاهِيمَ بْنِ إِسْحَاقَ الْأَحْمَرِ">إِبْرَاهِيمَ بْنِ إِسْحَاقَ الْأَحْمَرِ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ سُلَيْمَانَ الدَّيْلَمِيِّ">مُحَمَّدِ بْنِ سُلَيْمَانَ الدَّيْلَمِيِّ</option>
+                                
+                                    <option value="أَبِيهِ">أَبِيهِ</option>
+                                
+                                    <option value="عَلِيُّ بْنُ إِبْرَاهِيمَ">عَلِيُّ بْنُ إِبْرَاهِيمَ</option>
+                                
+                                    <option value="النَّوْفَلِيِّ">النَّوْفَلِيِّ</option>
+                                
+                                    <option value="السَّكُونِيِّ">السَّكُونِيِّ</option>
+                                
+                                    <option value="ابْنِ مَحْبُوبٍ">ابْنِ مَحْبُوبٍ</option>
+                                
+                                    <option value="عَبْدِ اللهِ بْنِ سِنَانٍ">عَبْدِ اللهِ بْنِ سِنَانٍ</option>
+                                
+                                    <option value="بَعْضِ أَصْحَابِهِ رَفَعَهُ">بَعْضِ أَصْحَابِهِ رَفَعَهُ</option>
+                                
+                                    <option value="أَبُو عَبْدِ اللهِ الْأَشْعَرِيُّ">أَبُو عَبْدِ اللهِ الْأَشْعَرِيُّ</option>
+                                
+                                    <option value="بَعْضِ أَصْحَابِنَا رَفَعَهُ">بَعْضِ أَصْحَابِنَا رَفَعَهُ</option>
+                                
+                                    <option value="هِشَامِ بْنِ الْحَكَمِ">هِشَامِ بْنِ الْحَكَمِ</option>
+                                
+                                    <option value="رَفَعَهُ">رَفَعَهُ</option>
+                                
+                                    <option value="عَلِيِّ بْنِ حَدِيدٍ">عَلِيِّ بْنِ حَدِيدٍ</option>
+                                
+                                    <option value="سَمَاعَةَ بْنِ مِهْرَانَ">سَمَاعَةَ بْنِ مِهْرَانَ</option>
+                                
+                                    <option value="جَمَاعَةٌ أَصْحَابِنَا">جَمَاعَةٌ أَصْحَابِنَا</option>
+                                
+                                    <option value="الحَسَنِ بْنِ عَلِيِّ بْنِ فَضَّالٍ">الحَسَنِ بْنِ عَلِيِّ بْنِ فَضَّالٍ</option>
+                                
+                                    <option value="جَعْفَرِ بْنِ مُحَمَّدٍ الْأَشْعَرِيِّ">جَعْفَرِ بْنِ مُحَمَّدٍ الْأَشْعَرِيِّ</option>
+                                
+                                    <option value="عُبَيْدِ اللهِ الدِّهْقَانِ">عُبَيْدِ اللهِ الدِّهْقَانِ</option>
+                                
+                                    <option value="دُرُسْتَ">دُرُسْتَ</option>
+                                
+                                    <option value="إِبْرَاهِيمَ بْنِ عَبْدِ الْحَمِيدِ">إِبْرَاهِيمَ بْنِ عَبْدِ الْحَمِيدِ</option>
+                                
+                                    <option value="عَلِيٌّ">عَلِيٌّ</option>
+                                
+                                    <option value="أَبِي هَاشِمٍ الْجَعْفَرِيِّ">أَبِي هَاشِمٍ الْجَعْفَرِيِّ</option>
+                                
+                                    <option value="يَحْيَى بْنِ الْمُبَارَكِ">يَحْيَى بْنِ الْمُبَارَكِ</option>
+                                
+                                    <option value="عَبْدِ اللهِ بْنِ جَبَلَةَ">عَبْدِ اللهِ بْنِ جَبَلَةَ</option>
+                                
+                                    <option value="الْحُسَيْنُ بْنُ مُحَمَّدٍ">الْحُسَيْنُ بْنُ مُحَمَّدٍ</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ مُحَمَّدٍ السَّيَّارِيِّ">أَحْمَدَ بْنِ مُحَمَّدٍ السَّيَّارِيِّ</option>
+                                
+                                    <option value="أَبِي يَعْقُوبَ الْبَغْدَادِيِّ">أَبِي يَعْقُوبَ الْبَغْدَادِيِّ</option>
+                                
+                                    <option value="مُعَلَّى بْنِ مُحَمَّدٍ">مُعَلَّى بْنِ مُحَمَّدٍ</option>
+                                
+                                    <option value="الْوَشَّاءِ">الْوَشَّاءِ</option>
+                                
+                                    <option value="الْمُثَنَّى الْحَنَّاطِ">الْمُثَنَّى الْحَنَّاطِ</option>
+                                
+                                    <option value="قُتَيْبَةَ الْأَعْشى">قُتَيْبَةَ الْأَعْشى</option>
+                                
+                                    <option value="ابْنِ أَبِي يَعْفُورٍ">ابْنِ أَبِي يَعْفُورٍ</option>
+                                
+                                    <option value="مَوْلىً لِبَنِي شَيْبَانَ">مَوْلىً لِبَنِي شَيْبَانَ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ سُلَيْمَانَ">مُحَمَّدِ بْنِ سُلَيْمَانَ</option>
+                                
+                                    <option value="عَلِيِّ بْنِ إِبْرَاهِيمَ">عَلِيِّ بْنِ إِبْرَاهِيمَ</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ مُحَمَّدٍ مُرْسَلاً">أَحْمَدَ بْنِ مُحَمَّدٍ مُرْسَلاً</option>
+                                
+                                    <option value="إِسْمَاعِيلَ بْنِ مِهْرَانَ">إِسْمَاعِيلَ بْنِ مِهْرَانَ</option>
+                                
+                                    <option value="بَعْضِ رِجَالِهِ">بَعْضِ رِجَالِهِ</option>
+                                
+                                    <option value="حَمَّادِ بْنِ عُثْمَانَ">حَمَّادِ بْنِ عُثْمَانَ</option>
+                                
+                                    <option value="السَّرِيِّ بْنِ خَالِدٍ">السَّرِيِّ بْنِ خَالِدٍ</option>
+                                
+                                    <option value="مُحَمَّدُ بْنُ الْحَسَنِ">مُحَمَّدُ بْنُ الْحَسَنِ</option>
+                                
+                                    <option value="ابْنِ أَبِي نَجْرَانَ">ابْنِ أَبِي نَجْرَانَ</option>
+                                
+                                    <option value="الْهَيْثَمِ بْنِ أَبِي مَسْرُوقٍ النَّهْدِيِّ الْحُسَيْنِ بْنِ خَالِدٍ">الْهَيْثَمِ بْنِ أَبِي مَسْرُوقٍ النَّهْدِيِّ الْحُسَيْنِ بْنِ خَالِدٍ</option>
+                                
+                                    <option value="بَعْضِ مَنْ رَفَعَهُ">بَعْضِ مَنْ رَفَعَهُ</option>
+                                
+                                    <option value="بَعْضُ أَصْحَابِنَا رَفَعَهُ">بَعْضُ أَصْحَابِنَا رَفَعَهُ</option>
+                                
+                                    <option value="مُفَضَّلِ بْنِ عُمَرَ">مُفَضَّلِ بْنِ عُمَرَ</option>
+                                
+                                    <option value="مُحَمَّدُ بْنُ يَحْيى رَفَعَهُ">مُحَمَّدُ بْنُ يَحْيى رَفَعَهُ</option>
+                                
+                                    <option value="عَلِيُّ بْنُ إِبْرَاهِيمَ بْنِ هَاشِمٍ">عَلِيُّ بْنُ إِبْرَاهِيمَ بْنِ هَاشِمٍ</option>
+                                
+                                    <option value="مُوسَى بْنِ إِبْرَاهِيمَ الْمُحَارِبِيِّ">مُوسَى بْنِ إِبْرَاهِيمَ الْمُحَارِبِيِّ</option>
+                                
+                                    <option value="الْحَسَنِ بْنِ مُوسى">الْحَسَنِ بْنِ مُوسى</option>
+                                
+                                    <option value="مُوسَى بْنِ عَبْدِ اللهِ">مُوسَى بْنِ عَبْدِ اللهِ</option>
+                                
+                                    <option value="مَيْمُونِ بْنِ عَلِيٍّ">مَيْمُونِ بْنِ عَلِيٍّ</option>
+                                
+                                    <option value="أَبُو عَبْدِ اللهِ الْعَاصِمِيُّ">أَبُو عَبْدِ اللهِ الْعَاصِمِيُّ</option>
+                                
+                                    <option value="عَلِيِّ بْنِ الْحَسَنِ">عَلِيِّ بْنِ الْحَسَنِ</option>
+                                
+                                    <option value="عَلِيِّ بْنِ أَسْبَاطٍ">عَلِيِّ بْنِ أَسْبَاطٍ</option>
+                                
+                                    <option value="أَحْمَدَ بْنِ عُمَرَ الْحَلَبِيِّ">أَحْمَدَ بْنِ عُمَرَ الْحَلَبِيِّ</option>
+                                
+                                    <option value="يَحْيَى بْنِ عِمْرَانَ">يَحْيَى بْنِ عِمْرَانَ</option>
+                                
+                                    <option value="عَبْدِ اللهِ الْبَزَّازِ">عَبْدِ اللهِ الْبَزَّازِ</option>
+                                
+                                    <option value="مُحَمَّدِ بْنِ عَبْدِ الرَّحْمنِ بْنِحَمَّادٍ">مُحَمَّدِ بْنِ عَبْدِ الرَّحْمنِ بْنِحَمَّادٍ</option>
+                                
+                                    <option value="الْحَسَنِ بْنِ عَمَّارٍ">الْحَسَنِ بْنِ عَمَّارٍ</option>
+                                
+                                    <option value="بَعْضِ أَصْحَابِهِ">بَعْضِ أَصْحَابِهِ</option>
+                                
+                                    <option value="ابْنِ أَبِي عُمَيْرٍ">ابْنِ أَبِي عُمَيْرٍ</option>
+                                
+                                    <option value="النَّضْرِ بْنِ سُوَيْدٍ">النَّضْرِ بْنِ سُوَيْدٍ</option>
+                                
+                                    <option value="حُمْرَانَ وَصَفْوَانَ بْنِ مِهْرَانَ الْجَمَّالِ">حُمْرَانَ وَصَفْوَانَ بْنِ مِهْرَانَ الْجَمَّالِ</option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-2 pb-2">
+                            <button type="button" class="btn btn-primary btn-block" onclick="neighbourhoodHighlight({nodes: []});">Reset Selection</button>
+                        </div>
+                    </div>
+                </div>
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+                  new TomSelect("#select-node",{
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      }
+                  });
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "\u0623\u064e\u0628\u064f\u0648 \u062c\u064e\u0639\u0652\u0641\u064e\u0631\u064d \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e", "label": "\u0623\u064e\u0628\u064f\u0648 \u062c\u064e\u0639\u0652\u0641\u064e\u0631\u064d \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0627\u0644\u0652\u0639\u064e\u0637\u0651\u064e\u0627\u0631\u064f", "label": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0627\u0644\u0652\u0639\u064e\u0637\u0651\u064e\u0627\u0631\u064f", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "label": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d", "label": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0633\u0652\u0644\u0650\u0645\u064d", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0633\u0652\u0644\u0650\u0645\u064d", "shape": "dot", "title": "1"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "label": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0645\u0652\u0631\u0650\u0648 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "label": "\u0639\u064e\u0645\u0652\u0631\u0650\u0648 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0635\u064e\u0627\u0644\u0650\u062d\u064d", "label": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0635\u064e\u0627\u0644\u0650\u062d\u064d", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0633\u064e\u0639\u0652\u062f\u0650 \u0628\u0652\u0646\u0650 \u0637\u064e\u0631\u0650\u064a\u0641\u064d", "label": "\u0633\u064e\u0639\u0652\u062f\u0650 \u0628\u0652\u0646\u0650 \u0637\u064e\u0631\u0650\u064a\u0641\u064d", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u0623\u064e\u0635\u0652\u0628\u064e\u063a\u0650 \u0628\u0652\u0646\u0650 \u0646\u064f\u0628\u064e\u0627\u062a\u064e\u0629\u064e", "label": "\u0627\u0644\u0652\u0623\u064e\u0635\u0652\u0628\u064e\u063a\u0650 \u0628\u0652\u0646\u0650 \u0646\u064f\u0628\u064e\u0627\u062a\u064e\u0629\u064e", "shape": "dot", "title": "2"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u062f\u0652\u0631\u0650\u064a\u0633\u064e", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u062f\u0652\u0631\u0650\u064a\u0633\u064e", "shape": "dot", "title": "3"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062c\u064e\u0628\u0651\u064e\u0627\u0631\u0650", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062c\u064e\u0628\u0651\u064e\u0627\u0631\u0650", "shape": "dot", "title": "3"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "shape": "dot", "title": "3"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649", "shape": "dot", "title": "4"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649", "shape": "dot", "title": "4"}, {"color": "#97c2fc", "id": "\u0627\u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "label": "\u0627\u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "shape": "dot", "title": "4"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0645\u0650", "label": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0645\u0650", "shape": "dot", "title": "4"}, {"color": "#97c2fc", "id": "\u0623\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "label": "\u0623\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "shape": "dot", "title": "5"}, {"color": "#97c2fc", "id": "\u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "label": "\u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "shape": "dot", "title": "5"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u0633\u0651\u064e\u0627\u0646\u064e", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u0633\u0651\u064e\u0627\u0646\u064e", "shape": "dot", "title": "6"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u0650\u064a \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0631\u0651\u064e\u0627\u0632\u0650\u064a\u0651\u0650", "label": "\u0623\u064e\u0628\u0650\u064a \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0631\u0651\u064e\u0627\u0632\u0650\u064a\u0651\u0650", "shape": "dot", "title": "6"}, {"color": "#97c2fc", "id": "\u0633\u064e\u064a\u0652\u0641\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0650\u064a\u0631\u064e\u0629\u064e", "label": "\u0633\u064e\u064a\u0652\u0641\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0650\u064a\u0631\u064e\u0629\u064e", "shape": "dot", "title": "6"}, {"color": "#97c2fc", "id": "\u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d", "label": "\u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d", "shape": "dot", "title": "6"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "label": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "shape": "dot", "title": "7"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "shape": "dot", "title": "7"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u064a\u064e\u0642\u0652\u0637\u0650\u064a\u0646\u064d", "label": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u064a\u064e\u0642\u0652\u0637\u0650\u064a\u0646\u064d", "shape": "dot", "title": "7"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d", "shape": "dot", "title": "7"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u0650\u064a \u0627\u0644\u0652\u062c\u064e\u0627\u0631\u064f\u0648\u062f\u0650", "label": "\u0623\u064e\u0628\u0650\u064a \u0627\u0644\u0652\u062c\u064e\u0627\u0631\u064f\u0648\u062f\u0650", "shape": "dot", "title": "7"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "shape": "dot", "title": "8"}, {"color": "#97c2fc", "id": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0627\u0644\u0652\u0623\u064e\u062d\u0652\u0645\u064e\u0631\u0650", "label": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0627\u0644\u0652\u0623\u064e\u062d\u0652\u0645\u064e\u0631\u0650", "shape": "dot", "title": "8"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e \u0627\u0644\u062f\u0651\u064e\u064a\u0652\u0644\u064e\u0645\u0650\u064a\u0651\u0650", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e \u0627\u0644\u062f\u0651\u064e\u064a\u0652\u0644\u064e\u0645\u0650\u064a\u0651\u0650", "shape": "dot", "title": "8"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "label": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "shape": "dot", "title": "8"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "shape": "dot", "title": "9"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650", "label": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650", "shape": "dot", "title": "9"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0633\u0651\u064e\u0643\u064f\u0648\u0646\u0650\u064a\u0651\u0650", "label": "\u0627\u0644\u0633\u0651\u064e\u0643\u064f\u0648\u0646\u0650\u064a\u0651\u0650", "shape": "dot", "title": "9"}, {"color": "#97c2fc", "id": "\u0627\u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "label": "\u0627\u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "shape": "dot", "title": "10"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d", "label": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d", "shape": "dot", "title": "10"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "11"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u064f", "label": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u064f", "shape": "dot", "title": "12"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "12"}, {"color": "#97c2fc", "id": "\u0647\u0650\u0634\u064e\u0627\u0645\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0643\u064e\u0645\u0650", "label": "\u0647\u0650\u0634\u064e\u0627\u0645\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0643\u064e\u0645\u0650", "shape": "dot", "title": "12"}, {"color": "#97c2fc", "id": "\u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "13"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u062f\u0650\u064a\u062f\u064d", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u062f\u0650\u064a\u062f\u064d", "shape": "dot", "title": "14"}, {"color": "#97c2fc", "id": "\u0633\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e", "label": "\u0633\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e", "shape": "dot", "title": "14"}, {"color": "#97c2fc", "id": "\u062c\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064c \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "label": "\u062c\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064c \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "shape": "dot", "title": "15"}, {"color": "#97c2fc", "id": "\u0627\u0644\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "label": "\u0627\u0644\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "shape": "dot", "title": "15"}, {"color": "#97c2fc", "id": "\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u0650", "label": "\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u0650", "shape": "dot", "title": "17"}, {"color": "#97c2fc", "id": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650", "label": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650", "shape": "dot", "title": "17"}, {"color": "#97c2fc", "id": "\u062f\u064f\u0631\u064f\u0633\u0652\u062a\u064e", "label": "\u062f\u064f\u0631\u064f\u0633\u0652\u062a\u064e", "shape": "dot", "title": "17"}, {"color": "#97c2fc", "id": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062d\u064e\u0645\u0650\u064a\u062f\u0650", "label": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062d\u064e\u0645\u0650\u064a\u062f\u0650", "shape": "dot", "title": "17"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u064c", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u064c", "shape": "dot", "title": "18"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u0650\u064a \u0647\u064e\u0627\u0634\u0650\u0645\u064d \u0627\u0644\u0652\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650\u064a\u0651\u0650", "label": "\u0623\u064e\u0628\u0650\u064a \u0647\u064e\u0627\u0634\u0650\u0645\u064d \u0627\u0644\u0652\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650\u064a\u0651\u0650", "shape": "dot", "title": "18"}, {"color": "#97c2fc", "id": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u0650", "label": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u0650", "shape": "dot", "title": "19"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u062c\u064e\u0628\u064e\u0644\u064e\u0629\u064e", "label": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u062c\u064e\u0628\u064e\u0644\u064e\u0629\u064e", "shape": "dot", "title": "19"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "label": "\u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "shape": "dot", "title": "20"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0633\u0651\u064e\u064a\u0651\u064e\u0627\u0631\u0650\u064a\u0651\u0650", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0633\u0651\u064e\u064a\u0651\u064e\u0627\u0631\u0650\u064a\u0651\u0650", "shape": "dot", "title": "20"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e \u0627\u0644\u0652\u0628\u064e\u063a\u0652\u062f\u064e\u0627\u062f\u0650\u064a\u0651\u0650", "label": "\u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e \u0627\u0644\u0652\u0628\u064e\u063a\u0652\u062f\u064e\u0627\u062f\u0650\u064a\u0651\u0650", "shape": "dot", "title": "20"}, {"color": "#97c2fc", "id": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "label": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650", "label": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u0645\u064f\u062b\u064e\u0646\u0651\u064e\u0649 \u0627\u0644\u0652\u062d\u064e\u0646\u0651\u064e\u0627\u0637\u0650", "label": "\u0627\u0644\u0652\u0645\u064f\u062b\u064e\u0646\u0651\u064e\u0649 \u0627\u0644\u0652\u062d\u064e\u0646\u0651\u064e\u0627\u0637\u0650", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0642\u064f\u062a\u064e\u064a\u0652\u0628\u064e\u0629\u064e \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u0634\u0649", "label": "\u0642\u064f\u062a\u064e\u064a\u0652\u0628\u064e\u0629\u064e \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u0634\u0649", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u0631\u064d", "label": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u0631\u064d", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0645\u064e\u0648\u0652\u0644\u0649\u064b \u0644\u0650\u0628\u064e\u0646\u0650\u064a \u0634\u064e\u064a\u0652\u0628\u064e\u0627\u0646\u064e", "label": "\u0645\u064e\u0648\u0652\u0644\u0649\u064b \u0644\u0650\u0628\u064e\u0646\u0650\u064a \u0634\u064e\u064a\u0652\u0628\u064e\u0627\u0646\u064e", "shape": "dot", "title": "21"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e", "shape": "dot", "title": "22"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "shape": "dot", "title": "22"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0645\u064f\u0631\u0652\u0633\u064e\u0644\u0627\u064b", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0645\u064f\u0631\u0652\u0633\u064e\u0644\u0627\u064b", "shape": "dot", "title": "23"}, {"color": "#97c2fc", "id": "\u0625\u0650\u0633\u0652\u0645\u064e\u0627\u0639\u0650\u064a\u0644\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e", "label": "\u0625\u0650\u0633\u0652\u0645\u064e\u0627\u0639\u0650\u064a\u0644\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e", "shape": "dot", "title": "24"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0631\u0650\u062c\u064e\u0627\u0644\u0650\u0647\u0650", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0631\u0650\u062c\u064e\u0627\u0644\u0650\u0647\u0650", "shape": "dot", "title": "24"}, {"color": "#97c2fc", "id": "\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "label": "\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "shape": "dot", "title": "25"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0633\u0651\u064e\u0631\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "label": "\u0627\u0644\u0633\u0651\u064e\u0631\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "shape": "dot", "title": "25"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "shape": "dot", "title": "26"}, {"color": "#97c2fc", "id": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0646\u064e\u062c\u0652\u0631\u064e\u0627\u0646\u064e", "label": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0646\u064e\u062c\u0652\u0631\u064e\u0627\u0646\u064e", "shape": "dot", "title": "26"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u0647\u064e\u064a\u0652\u062b\u064e\u0645\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0645\u064e\u0633\u0652\u0631\u064f\u0648\u0642\u064d \u0627\u0644\u0646\u0651\u064e\u0647\u0652\u062f\u0650\u064a\u0651\u0650 \u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "label": "\u0627\u0644\u0652\u0647\u064e\u064a\u0652\u062b\u064e\u0645\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0645\u064e\u0633\u0652\u0631\u064f\u0648\u0642\u064d \u0627\u0644\u0646\u0651\u064e\u0647\u0652\u062f\u0650\u064a\u0651\u0650 \u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "shape": "dot", "title": "27"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0645\u064e\u0646\u0652 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0645\u064e\u0646\u0652 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "28"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u064f \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0628\u064e\u0639\u0652\u0636\u064f \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "29"}, {"color": "#97c2fc", "id": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e", "label": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e", "shape": "dot", "title": "29"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "shape": "dot", "title": "30"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0647\u064e\u0627\u0634\u0650\u0645\u064d", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0647\u064e\u0627\u0634\u0650\u0645\u064d", "shape": "dot", "title": "31"}, {"color": "#97c2fc", "id": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0627\u0644\u0652\u0645\u064f\u062d\u064e\u0627\u0631\u0650\u0628\u0650\u064a\u0651\u0650", "label": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0627\u0644\u0652\u0645\u064f\u062d\u064e\u0627\u0631\u0650\u0628\u0650\u064a\u0651\u0650", "shape": "dot", "title": "31"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0648\u0633\u0649", "label": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0648\u0633\u0649", "shape": "dot", "title": "31"}, {"color": "#97c2fc", "id": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "label": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "shape": "dot", "title": "31"}, {"color": "#97c2fc", "id": "\u0645\u064e\u064a\u0652\u0645\u064f\u0648\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u064d", "label": "\u0645\u064e\u064a\u0652\u0645\u064f\u0648\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u064d", "shape": "dot", "title": "31"}, {"color": "#97c2fc", "id": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0639\u064e\u0627\u0635\u0650\u0645\u0650\u064a\u0651\u064f", "label": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0639\u064e\u0627\u0635\u0650\u0645\u0650\u064a\u0651\u064f", "shape": "dot", "title": "32"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "shape": "dot", "title": "32"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0633\u0652\u0628\u064e\u0627\u0637\u064d", "label": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0633\u0652\u0628\u064e\u0627\u0637\u064d", "shape": "dot", "title": "32"}, {"color": "#97c2fc", "id": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e \u0627\u0644\u0652\u062d\u064e\u0644\u064e\u0628\u0650\u064a\u0651\u0650", "label": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e \u0627\u0644\u0652\u062d\u064e\u0644\u064e\u0628\u0650\u064a\u0651\u0650", "shape": "dot", "title": "34"}, {"color": "#97c2fc", "id": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u0650\u0645\u0652\u0631\u064e\u0627\u0646\u064e", "label": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u0650\u0645\u0652\u0631\u064e\u0627\u0646\u064e", "shape": "dot", "title": "34"}, {"color": "#97c2fc", "id": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0628\u064e\u0632\u0651\u064e\u0627\u0632\u0650", "label": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0628\u064e\u0632\u0651\u064e\u0627\u0632\u0650", "shape": "dot", "title": "35"}, {"color": "#97c2fc", "id": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u0646\u0650 \u0628\u0652\u0646\u0650\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u064d", "label": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u0646\u0650 \u0628\u0652\u0646\u0650\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u064d", "shape": "dot", "title": "35"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d", "label": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d", "shape": "dot", "title": "35"}, {"color": "#97c2fc", "id": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650", "label": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650", "shape": "dot", "title": "36"}, {"color": "#97c2fc", "id": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0639\u064f\u0645\u064e\u064a\u0652\u0631\u064d", "label": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0639\u064f\u0645\u064e\u064a\u0652\u0631\u064d", "shape": "dot", "title": "36"}, {"color": "#97c2fc", "id": "\u0627\u0644\u0646\u0651\u064e\u0636\u0652\u0631\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0648\u064e\u064a\u0652\u062f\u064d", "label": "\u0627\u0644\u0646\u0651\u064e\u0636\u0652\u0631\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0648\u064e\u064a\u0652\u062f\u064d", "shape": "dot", "title": "36"}, {"color": "#97c2fc", "id": "\u062d\u064f\u0645\u0652\u0631\u064e\u0627\u0646\u064e \u0648\u064e\u0635\u064e\u0641\u0652\u0648\u064e\u0627\u0646\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e \u0627\u0644\u0652\u062c\u064e\u0645\u0651\u064e\u0627\u0644\u0650", "label": "\u062d\u064f\u0645\u0652\u0631\u064e\u0627\u0646\u064e \u0648\u064e\u0635\u064e\u0641\u0652\u0648\u064e\u0627\u0646\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e \u0627\u0644\u0652\u062c\u064e\u0645\u0651\u064e\u0627\u0644\u0650", "shape": "dot", "title": "36"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "\u0623\u064e\u0628\u064f\u0648 \u062c\u064e\u0639\u0652\u0641\u064e\u0631\u064d \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e", "to": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0627\u0644\u0652\u0639\u064e\u0637\u0651\u064e\u0627\u0631\u064f"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0627\u0644\u0652\u0639\u064e\u0637\u0651\u064e\u0627\u0631\u064f", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "to": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0633\u0652\u0644\u0650\u0645\u064d"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0639\u064e\u0645\u0652\u0631\u0650\u0648 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0639\u064e\u0645\u0652\u0631\u0650\u0648 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "to": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0635\u064e\u0627\u0644\u0650\u062d\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0635\u064e\u0627\u0644\u0650\u062d\u064d", "to": "\u0633\u064e\u0639\u0652\u062f\u0650 \u0628\u0652\u0646\u0650 \u0637\u064e\u0631\u0650\u064a\u0641\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0639\u0652\u062f\u0650 \u0628\u0652\u0646\u0650 \u0637\u064e\u0631\u0650\u064a\u0641\u064d", "to": "\u0627\u0644\u0652\u0623\u064e\u0635\u0652\u0628\u064e\u063a\u0650 \u0628\u0652\u0646\u0650 \u0646\u064f\u0628\u064e\u0627\u062a\u064e\u0629\u064e"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u062f\u0652\u0631\u0650\u064a\u0633\u064e", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062c\u064e\u0628\u0651\u064e\u0627\u0631\u0650"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062c\u064e\u0628\u0651\u064e\u0627\u0631\u0650", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649", "to": "\u0627\u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d"}, {"arrows": "to", "from": "\u0627\u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0645\u0650"}, {"arrows": "to", "from": "\u0623\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d"}, {"arrows": "to", "from": "\u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0645\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u062f\u0652\u0631\u0650\u064a\u0633\u064e", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u0633\u0651\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u0633\u0651\u064e\u0627\u0646\u064e", "to": "\u0623\u064e\u0628\u0650\u064a \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0631\u0651\u064e\u0627\u0632\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u0650\u064a \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0631\u0651\u064e\u0627\u0632\u0650\u064a\u0651\u0650", "to": "\u0633\u064e\u064a\u0652\u0641\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0650\u064a\u0631\u064e\u0629\u064e"}, {"arrows": "to", "from": "\u0633\u064e\u064a\u0652\u0641\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0650\u064a\u0631\u064e\u0629\u064e", "to": "\u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u064a\u064e\u0642\u0652\u0637\u0650\u064a\u0646\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u064a\u064e\u0642\u0652\u0637\u0650\u064a\u0646\u064d", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d", "to": "\u0623\u064e\u0628\u0650\u064a \u0627\u0644\u0652\u062c\u064e\u0627\u0631\u064f\u0648\u062f\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "to": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0627\u0644\u0652\u0623\u064e\u062d\u0652\u0645\u064e\u0631\u0650"}, {"arrows": "to", "from": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0627\u0644\u0652\u0623\u064e\u062d\u0652\u0645\u064e\u0631\u0650", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e \u0627\u0644\u062f\u0651\u064e\u064a\u0652\u0644\u064e\u0645\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e \u0627\u0644\u062f\u0651\u064e\u064a\u0652\u0644\u064e\u0645\u0650\u064a\u0651\u0650", "to": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "to": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "to": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650", "to": "\u0627\u0644\u0633\u0651\u064e\u0643\u064f\u0648\u0646\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u064a\u064e\u062d\u0652\u064a\u0649", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0627\u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d"}, {"arrows": "to", "from": "\u0627\u0628\u0652\u0646\u0650 \u0645\u064e\u062d\u0652\u0628\u064f\u0648\u0628\u064d", "to": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u064f", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f"}, {"arrows": "to", "from": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "to": "\u0647\u0650\u0634\u064e\u0627\u0645\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0643\u064e\u0645\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u062f\u0650\u064a\u062f\u064d"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062d\u064e\u062f\u0650\u064a\u062f\u064d", "to": "\u0633\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u062c\u064e\u0645\u064e\u0627\u0639\u064e\u0629\u064c \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u0650\u064a\u0633\u0649", "to": "\u0627\u0644\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0641\u064e\u0636\u0651\u064e\u0627\u0644\u064d", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0646\u0651\u064e\u0648\u0652\u0641\u064e\u0644\u0650\u064a\u0651\u0650", "to": "\u0627\u0644\u0633\u0651\u064e\u0643\u064f\u0648\u0646\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "to": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "to": "\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0652\u0623\u064e\u0634\u0652\u0639\u064e\u0631\u0650\u064a\u0651\u0650", "to": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650"}, {"arrows": "to", "from": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650", "to": "\u062f\u064f\u0631\u064f\u0633\u0652\u062a\u064e"}, {"arrows": "to", "from": "\u062f\u064f\u0631\u064f\u0633\u0652\u062a\u064e", "to": "\u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0652\u062d\u064e\u0645\u0650\u064a\u062f\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064c", "to": "\u0623\u064e\u0628\u0650\u064a \u0647\u064e\u0627\u0634\u0650\u0645\u064d \u0627\u0644\u0652\u062c\u064e\u0639\u0652\u0641\u064e\u0631\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "to": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "to": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u0650"}, {"arrows": "to", "from": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u0645\u064f\u0628\u064e\u0627\u0631\u064e\u0643\u0650", "to": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u062c\u064e\u0628\u064e\u0644\u064e\u0629\u064e"}, {"arrows": "to", "from": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u062c\u064e\u0628\u064e\u0644\u064e\u0629\u064e", "to": "\u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0633\u0651\u064e\u064a\u0651\u064e\u0627\u0631\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0627\u0644\u0633\u0651\u064e\u064a\u0651\u064e\u0627\u0631\u0650\u064a\u0651\u0650", "to": "\u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0642\u064f\u0648\u0628\u064e \u0627\u0644\u0652\u0628\u064e\u063a\u0652\u062f\u064e\u0627\u062f\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650", "to": "\u0627\u0644\u0652\u0645\u064f\u062b\u064e\u0646\u0651\u064e\u0649 \u0627\u0644\u0652\u062d\u064e\u0646\u0651\u064e\u0627\u0637\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0645\u064f\u062b\u064e\u0646\u0651\u064e\u0649 \u0627\u0644\u0652\u062d\u064e\u0646\u0651\u064e\u0627\u0637\u0650", "to": "\u0642\u064f\u062a\u064e\u064a\u0652\u0628\u064e\u0629\u064e \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u0634\u0649"}, {"arrows": "to", "from": "\u0642\u064f\u062a\u064e\u064a\u0652\u0628\u064e\u0629\u064e \u0627\u0644\u0652\u0623\u064e\u0639\u0652\u0634\u0649", "to": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u0631\u064d"}, {"arrows": "to", "from": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u064a\u064e\u0639\u0652\u0641\u064f\u0648\u0631\u064d", "to": "\u0645\u064e\u0648\u0652\u0644\u0649\u064b \u0644\u0650\u0628\u064e\u0646\u0650\u064a \u0634\u064e\u064a\u0652\u0628\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0644\u064e\u064a\u0652\u0645\u064e\u0627\u0646\u064e", "to": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e", "to": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0628\u0652\u0646\u0650 \u0633\u0650\u0646\u064e\u0627\u0646\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d \u0645\u064f\u0631\u0652\u0633\u064e\u0644\u0627\u064b"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0625\u0650\u0633\u0652\u0645\u064e\u0627\u0639\u0650\u064a\u0644\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0625\u0650\u0633\u0652\u0645\u064e\u0627\u0639\u0650\u064a\u0644\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0631\u0650\u062c\u064e\u0627\u0644\u0650\u0647\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u0639\u064e\u0644\u0651\u064e\u0649 \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0648\u064e\u0634\u0651\u064e\u0627\u0621\u0650", "to": "\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u062b\u0652\u0645\u064e\u0627\u0646\u064e", "to": "\u0627\u0644\u0633\u0651\u064e\u0631\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064f \u0628\u0652\u0646\u064f \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0646\u064e\u062c\u0652\u0631\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0646\u064e\u062c\u0652\u0631\u064e\u0627\u0646\u064e", "to": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0639\u064e\u0644\u064e\u0627\u0621\u0650 \u0628\u0652\u0646\u0650 \u0631\u064e\u0632\u0650\u064a\u0646\u064d", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0633\u0652\u0644\u0650\u0645\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0627\u0644\u0652\u0647\u064e\u064a\u0652\u062b\u064e\u0645\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0645\u064e\u0633\u0652\u0631\u064f\u0648\u0642\u064d \u0627\u0644\u0646\u0651\u064e\u0647\u0652\u062f\u0650\u064a\u0651\u0650 \u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u0647\u064e\u064a\u0652\u062b\u064e\u0645\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0645\u064e\u0633\u0652\u0631\u064f\u0648\u0642\u064d \u0627\u0644\u0646\u0651\u064e\u0647\u0652\u062f\u0650\u064a\u0651\u0650 \u0627\u0644\u0652\u062d\u064f\u0633\u064e\u064a\u0652\u0646\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "to": "\u0625\u0650\u0633\u0652\u062d\u064e\u0627\u0642\u064e \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0645\u064e\u0646\u0652 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f"}, {"arrows": "to", "from": "\u0628\u064e\u0639\u0652\u0636\u064f \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627 \u0631\u064e\u0641\u064e\u0639\u064e\u0647\u064f", "to": "\u0645\u064f\u0641\u064e\u0636\u0651\u064e\u0644\u0650 \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0628\u0652\u0646\u0650 \u0647\u064e\u0627\u0634\u0650\u0645\u064d", "to": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0627\u0644\u0652\u0645\u064f\u062d\u064e\u0627\u0631\u0650\u0628\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0625\u0650\u0628\u0652\u0631\u064e\u0627\u0647\u0650\u064a\u0645\u064e \u0627\u0644\u0652\u0645\u064f\u062d\u064e\u0627\u0631\u0650\u0628\u0650\u064a\u0651\u0650", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0648\u0633\u0649"}, {"arrows": "to", "from": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0645\u064f\u0648\u0633\u0649", "to": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650"}, {"arrows": "to", "from": "\u0645\u064f\u0648\u0633\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650", "to": "\u0645\u064e\u064a\u0652\u0645\u064f\u0648\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0644\u0650\u064a\u0651\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u064f\u0648 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0639\u064e\u0627\u0635\u0650\u0645\u0650\u064a\u0651\u064f", "to": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650", "to": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0633\u0652\u0628\u064e\u0627\u0637\u064d"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u0650 \u0628\u0652\u0646\u0650 \u0623\u064e\u0633\u0652\u0628\u064e\u0627\u0637\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0627\u0644\u0652\u062c\u064e\u0647\u0652\u0645\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u062e\u064e\u0627\u0644\u0650\u062f\u064d", "to": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u0628\u0650\u064a\u0647\u0650", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0633\u064e\u0647\u0652\u0644\u0650 \u0628\u0652\u0646\u0650 \u0632\u0650\u064a\u064e\u0627\u062f\u064d", "to": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650"}, {"arrows": "to", "from": "\u0639\u064f\u0628\u064e\u064a\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u062f\u0651\u0650\u0647\u0652\u0642\u064e\u0627\u0646\u0650", "to": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e \u0627\u0644\u0652\u062d\u064e\u0644\u064e\u0628\u0650\u064a\u0651\u0650"}, {"arrows": "to", "from": "\u0623\u064e\u062d\u0652\u0645\u064e\u062f\u064e \u0628\u0652\u0646\u0650 \u0639\u064f\u0645\u064e\u0631\u064e \u0627\u0644\u0652\u062d\u064e\u0644\u064e\u0628\u0650\u064a\u0651\u0650", "to": "\u064a\u064e\u062d\u0652\u064a\u064e\u0649 \u0628\u0652\u0646\u0650 \u0639\u0650\u0645\u0652\u0631\u064e\u0627\u0646\u064e"}, {"arrows": "to", "from": "\u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0646\u064e\u0627", "to": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0628\u064e\u0632\u0651\u064e\u0627\u0632\u0650"}, {"arrows": "to", "from": "\u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0644\u0647\u0650 \u0627\u0644\u0652\u0628\u064e\u0632\u0651\u064e\u0627\u0632\u0650", "to": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u0646\u0650 \u0628\u0652\u0646\u0650\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u064d"}, {"arrows": "to", "from": "\u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0628\u0652\u062f\u0650 \u0627\u0644\u0631\u0651\u064e\u062d\u0652\u0645\u0646\u0650 \u0628\u0652\u0646\u0650\u062d\u064e\u0645\u0651\u064e\u0627\u062f\u064d", "to": "\u0627\u0644\u0652\u062d\u064e\u0633\u064e\u0646\u0650 \u0628\u0652\u0646\u0650 \u0639\u064e\u0645\u0651\u064e\u0627\u0631\u064d"}, {"arrows": "to", "from": "\u0639\u064e\u0644\u0650\u064a\u0651\u064f \u0628\u0652\u0646\u064f \u0645\u064f\u062d\u064e\u0645\u0651\u064e\u062f\u064d", "to": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650"}, {"arrows": "to", "from": "\u0628\u064e\u0639\u0652\u0636\u0650 \u0623\u064e\u0635\u0652\u062d\u064e\u0627\u0628\u0650\u0647\u0650", "to": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0639\u064f\u0645\u064e\u064a\u0652\u0631\u064d"}, {"arrows": "to", "from": "\u0627\u0628\u0652\u0646\u0650 \u0623\u064e\u0628\u0650\u064a \u0639\u064f\u0645\u064e\u064a\u0652\u0631\u064d", "to": "\u0627\u0644\u0646\u0651\u064e\u0636\u0652\u0631\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0648\u064e\u064a\u0652\u062f\u064d"}, {"arrows": "to", "from": "\u0627\u0644\u0646\u0651\u064e\u0636\u0652\u0631\u0650 \u0628\u0652\u0646\u0650 \u0633\u064f\u0648\u064e\u064a\u0652\u062f\u064d", "to": "\u062d\u064f\u0645\u0652\u0631\u064e\u0627\u0646\u064e \u0648\u064e\u0635\u064e\u0641\u0652\u0648\u064e\u0627\u0646\u064e \u0628\u0652\u0646\u0650 \u0645\u0650\u0647\u0652\u0631\u064e\u0627\u0646\u064e \u0627\u0644\u0652\u062c\u064e\u0645\u0651\u064e\u0627\u0644\u0650"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+                    network.on("selectNode", neighbourhoodHighlight);
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
