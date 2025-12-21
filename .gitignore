@@ -6,3 +6,4 @@ vendor
 Gemfile.lock
 .DS_Store
 /knowledge_base
+/gitignored_files
