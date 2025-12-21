@@ -2,7 +2,7 @@
 	"name": "astro-cactus",
 	"type": "module",
 	"version": "6.11.0",
-	"packageManager": "pnpm@9.15.2"
+	"packageManager": "pnpm@9.15.2",
 	"private": false,
 	"scripts": {
 		"postinstall": "npm rebuild sharp --force",
