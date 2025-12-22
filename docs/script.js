@@ -261,7 +261,7 @@ class LazyImageLoader {
 class MarkdownLoader {
     constructor() {
         // 'about','Development', etc.
-        this.sections = ['about'];
+        this.sections = ['about','Development'];
         this.init();
     }
 
