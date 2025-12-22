@@ -409,17 +409,17 @@ body {
 }
 
 /* Hamburger icon sizing and toggling */
-/*#toggle-navigation-menu svg {
+#toggle-navigation-menu svg {
     width: 24px;
     height: 24px;
     transition: opacity 0.2s ease;
-}*/
+}
 
-/*#toggle-navigation-menu[aria-expanded="false"] svg:first-of-type { display: block; opacity: 1; }
+#toggle-navigation-menu[aria-expanded="false"] svg:first-of-type { display: block; opacity: 1; }
 #toggle-navigation-menu[aria-expanded="false"] svg:last-of-type  { display: none;  opacity: 0; }
 
 #toggle-navigation-menu[aria-expanded="true"]  svg:first-of-type { display: none;  opacity: 0; }
-#toggle-navigation-menu[aria-expanded="true"]  svg:last-of-type  { display: block; opacity: 1; }*/
+#toggle-navigation-menu[aria-expanded="true"]  svg:last-of-type  { display: block; opacity: 1; }
 
 /* Theme toggle styles */
 #theme-toggle {
@@ -761,10 +761,10 @@ button:focus-visible {
     .header-logo { margin-right: 0.5rem; }
 
     /* Enlarge hamburger icon visuals on mobile */
-/*    #toggle-navigation-menu svg {
+    #toggle-navigation-menu svg {
         width: 24px;
         height: 24px;
-    }*/
+    }
 
     /* Larger touch targets */
     #theme-toggle,

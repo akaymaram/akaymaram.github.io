@@ -399,17 +399,17 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Add keyboard navigation support
-// document.addEventListener('keydown', (e) => {
-//     // Handle keyboard navigation for theme toggle
-//     if (e.key === 't' && (e.ctrlKey || e.metaKey)) {
-//         e.preventDefault();
-//         const themeToggle = document.getElementById('theme-toggle');
-//         if (themeToggle) {
-//             themeToggle.click();
-//         }
-//     }
-// });
+Add keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    // Handle keyboard navigation for theme toggle
+    if (e.key === 't' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.click();
+        }
+    }
+});
 
 
 // Add reduced motion support
