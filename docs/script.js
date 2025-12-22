@@ -48,7 +48,7 @@ class ThemeManager {
     }
 }
 
-Mobile navigation management
+//Mobile navigation management
 class MobileNavigation {
     constructor() {
         this.menuOpen = false;
@@ -399,7 +399,7 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-Add keyboard navigation support
+//Add keyboard navigation support
 document.addEventListener('keydown', (e) => {
     // Handle keyboard navigation for theme toggle
     if (e.key === 't' && (e.ctrlKey || e.metaKey)) {
