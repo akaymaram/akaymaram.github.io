@@ -1,5 +1,5 @@
 # Development Projects
-<li>Isnad network visualization (digital humanities/graph data science) (<a href="graph.html">interactive graph visualization using pyvis</a>)</li>
+<li>Isnad network visualization (digital humanities/graph data science) (<a href="graph.html">interactive network visualization using pyvis</a>)</li>
 <li>Usury Dashboard: Legal Interest Rate Choropleth (<a href="https://github.com/akaymaram/usury_dashboard">GitHub</a>)(<a href="https://usuryrates.streamlit.app">streamlit web app</a>)</li>
 <li>Trade Intelligence Dashboard (Buy/sell orders affecting price prior to clearinghouse settlement)</li>
 <li>200M+ RIA Case Workflow Analytics Dimensionality reduction using <a href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a></li>
