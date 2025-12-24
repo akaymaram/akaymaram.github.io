@@ -4,7 +4,7 @@
 		<h1 class="title">Ala Kaymaram</h1>
 		<div class="about-socials" style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;margin-top:0.5rem;">
 	<!--
-	<a href="https://scholar.google.com/citations?user=OVXyJ5MAAAAJ&hl=en" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;color:var(--color-accent-2);">
+	<a href="https://scholar.google.com/citations?user=&hl=en" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;color:var(--color-accent-2);">
 		<svg viewBox="0 0 24 24" role="img" aria-hidden="true" style="width:20px;height:20px;opacity:0.9;" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
 			<path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
 		</svg>
@@ -38,30 +38,7 @@
 		</div>
 	</div>
 </div>
-
-
-
 Full-Stack Data Scientist<br>
 current focus areas: graph data science, MLOps<br>
 AI Consulting & Development (fintech) at GLG Insights<br>
 B.A., Computer Science, Amherst College
-<!-- 
-<h3>Development Projects</h3>
-<li>Isnad network visualization (digital humanities/graph data science) (<a href="graph.html">interactive graph visualization using pyvis</a>)</li>
-<li>Usury Dashboard: Legal Interest Rate Choropleth (<a href="https://github.com/akaymaram/usury_dashboard">GitHub</a>)(<a href="https://usuryrates.streamlit.app">streamlit web app</a>)</li>
-<li>Trade Intelligence Dashboard (Buy/sell orders affecting price prior to clearinghouse settlement)</li>
-<li>200M+ RIA Case Workflow Analytics Dimensionality reduction using <a href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a></li>
-<li>Stress-level predictor using HRV feaures (ensemble supervised learning pipline) (<a href="https://github.com/akaymaram/ecg_stress_prediction/tree/main">GitHub</a>)</li>
-<li>ECG signal processing peak detector (<a href="https://github.com/akaymaram/ecg_stress_prediction/tree/main/ecg_peak_finder">GitHub</a>)</li>
-<li>Mammoth Eats, a full-stack cross-platform reservation app (<a href="https://apptopia.com/ios/app/1551664431/about">iOS version history</a>)</li>
-<li>Extractive text summarizer with pdf support utilizing an evolutionary algorithm optimizer(<a href="https://github.com/akaymaram/EALP">GitHub</a>)</li>
-
-<h3>Consulting Projects</h3>
-<li>AI Transformation | Decision Makers Perspective
-<li>Retirement Management Solutions
-<li>Trust & Wealth Management Software Space
-<li>Synthetic Data & World Model AI
-<li>Data Center Capacity Planning – AI Native POV
-<li>AI Search Traffic Optimization
- -->
-
