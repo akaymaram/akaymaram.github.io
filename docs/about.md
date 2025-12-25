@@ -40,5 +40,7 @@
 </div>
 Full-Stack Data Scientist<br>
 current focus areas: graph data science, MLOps<br>
-AI Consulting & Development (fintech) at GLG Insights<br>
-B.A., Computer Science, Amherst College
+AI Consulting & Development (fintech and healthtech) at GLG Insights<br>
+
+Financial Services Fundamentals, Boston University School of Law (2022)<br>
+B.A., Computer Science, Amherst College (2021)
