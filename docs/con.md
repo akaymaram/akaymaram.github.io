@@ -7,3 +7,4 @@
 <li>AI Search Traffic Optimization</li>
 <li>Open AI | London Stock Exchange Perspective</li>
 <li>AI Strategy in Retail Banking</li>
+<li>Autoamated data Collection for <a href="https://www.civicatlas.net">civic atlas</a></li>
