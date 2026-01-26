@@ -7,4 +7,4 @@
 <li>Mammoth Eats, a full-stack cross-platform reservation app (<a href="https://apptopia.com/ios/app/1551664431/about">iOS version history</a>)</li>
 <li>Isnad network visualization (digital humanities/graph data science)<br>
 (<a href="graph.html">interactive network visualization using pyvis</a>)</li>
-<li>Extractive text summarizer with pdf support utilizing an evolutionary algorithm optimizer (<a href="https://extractivesummarizer.streamlit.app">mvp</a>)</li>
+<li>Extractive text summarizer utilizing an evolutionary algorithm optimizer with pdf support (<a href="https://extractivesummarizer.streamlit.app">web access</a>)</li>
