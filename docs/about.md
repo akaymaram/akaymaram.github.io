@@ -38,7 +38,7 @@
 		</div>
 	</div>
 </div>
-AI Data Scientist<br>
+Full-Stack AI Data Scientist<br>
 AI Consulting at GLG Insights<br>
 current focus areas: graph data science, MLOps<br>
 
