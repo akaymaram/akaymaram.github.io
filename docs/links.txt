@@ -1,1 +1,2 @@
-apple.com
+https://www.apple.com
+https://www.usuryrates.streamlit.app
