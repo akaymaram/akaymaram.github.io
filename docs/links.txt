@@ -1,2 +1,2 @@
-https://www.apple.com
-https://www.usuryrates.streamlit.app
+https://extractivesummarizer.streamlit.app
+https://usuryrates.streamlit.app
