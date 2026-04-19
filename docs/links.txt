@@ -1,2 +1,3 @@
 https://extractivesummarizer.streamlit.app
 https://usuryrates.streamlit.app
+https://curiouscoder.pythonanywhere.com
