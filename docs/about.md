@@ -40,7 +40,7 @@
 </div>
 Full-Stack Data Scientist<br>
 AI Consulting at GLG Insights<br>
-current focus areas: graph data science, MLOps<br>
+current focus area: Human-Centered Artificial Intelligence<br>
 
 B.A., Computer Science, Amherst College (2021)<br>
 Financial Services Fundamentals, Boston University School of Law (2022)
